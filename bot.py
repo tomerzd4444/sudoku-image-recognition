@@ -118,7 +118,7 @@ grid = [[0 for _ in range(9)] for _ in range(9)]
 # pp(grid)
 for i in range(9):
     result = cv2.matchTemplate(images[i], board, method)
-    loc = np.where(result >= 0.9)
+    loc = np.where(result >= 0.85)
     last = (0, 0)
     for pt in zip(*loc[::-1]):
         if (pt[0], pt[1]) > (last[0] + 5, last[1] + 5) or (pt[0], pt[1]) < (last[0] - 5, last[1] - 5):
@@ -132,6 +132,7 @@ copied_grid = copy.deepcopy(grid)
 # valid_numbers = get_valid_numbers(grid)
 # pp(valid_numbers)
 start = time.time()
+pp(grid)
 grid = brute_force(grid)
 end = time.time()
 print(end - start)
